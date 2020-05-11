@@ -6,7 +6,11 @@ var mainApp = new Vue({
     timers: []
   },
   mounted: function () {
-    
+
+    for (let i = 0; i < 3; i++) {
+      this.addTimer();
+    }
+
     this.timer();
   },
   methods: {
