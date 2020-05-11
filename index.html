@@ -1,34 +1,26 @@
-<html>
-	<head>
-	    <title>Hello</title>
-		<script type="text/javascript" src="timer.js"></script>
-	</head>
-	<style>
-		input {
-			color: red;
-			font-size: 20px;
-		}
-		
-		.btn_azul {
-			color: blue;
-		}
-		
-		.btn_grande {
-			font-size: 20px;
-		}
-	</style>	
-	<body>
-		<div id="timer-template">
-			<input type="text" placeholder="Digite o nome..." />
-			<input type="button" class="btn_play_pause btn_grande btn_azul" onclick="alternaEstadoContagem(0)" value="Vaaai!" />
-			<input id="contador-0" class="contador" type="text" value="60" />
-			<br />
-		</div>
-		
-		<div id="timer-container">
-		</div>
-			
-		<input type="button" class="btn_grande btn_azul" onclick="adicionarContador()" value="Adicionar" />
-		
-	</body>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Daily Meeting Timer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="main-app">
+      
+      <div v-for="timer in timers" :key="timer.id">
+        <input type="text" class="txt-name" placeholder="Nome" />
+        <input type="button" class="btn-play-pause" 
+        @click="toggleTimer(timer)" :value="timer == currentTimer ? '&#9208;&#65039;' : '&#9654;&#65039;'" />
+        <input type="text" class="txt-time" :value="timer.time | formatTime" />
+      </div>
+      
+      <input type="button" class="btn-add" @click="addTimer" value="Adicionar" />
+      
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main-app.js"></script>
+  </body>
 </html>
