@@ -1,9 +1,16 @@
 # Daily Meeting Timer
 
-## Acesse o web app
+## Access web app
 
 <https://mustache1up.github.io/daily-meeting-timer/>
 
-## Descrição
+## Description
 
-Esse projeto implementa um timer para uso nas reuniões diárias da metologia ágil Scrum.
+This project implements a minimal timer for Scrum daily meetings or any other time-boxed meeting.
+
+## Contribute
+
+For feature request and bugs, file the issue here: 
+<https://github.com/mustache1up/daily-meeting-timer/issues>
+
+Pull requests are welcome (:
