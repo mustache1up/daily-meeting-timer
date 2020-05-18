@@ -23,4 +23,12 @@ input {
     transform: scale(2);
 }
 
+.blink {
+    animation: blinker 1.5s linear infinite;
+}
 
+@keyframes blinker {
+    50% {
+        opacity: 0.50;
+    }
+}

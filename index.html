@@ -142,7 +142,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="col-4">
                           <div id="name" class="input-group mb-3">
                             <div class="input-group-prepend">
-                          <span class="input-group-text">
+                              <span class="input-group-text" :class="timer == currentTimer ? 'blink' : ''">
                                 <i class="material-icons">timer</i>
                               </span>
                             </div>
