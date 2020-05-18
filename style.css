@@ -15,5 +15,12 @@ input {
     transform: translateY(30px);
 }
 
+.main-timer { 
+    position: sticky; 
+    top: 50vh; 
+    width: 120px;
+    /* transform-origin: right; */
+    transform: scale(2);
+}
 
 

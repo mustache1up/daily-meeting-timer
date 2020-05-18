@@ -56,7 +56,7 @@ The above copyright notice and this permission notice shall be included in all c
             <li class="nav-item"><a class="nav-link" rel="tooltip"
               title="" data-placement="bottom"
               href="#timer-title"
-              data-original-title="Go to Timer"><i
+              data-original-title="Scroll to Timer"><i
                 class="fa fa-clock-o"></i> 
                 Timer 
             </a></li>
@@ -94,46 +94,74 @@ The above copyright notice and this permission notice shall be included in all c
                   </div>
                 </div>
               </div>
-              <transition-group name="list" tag="div" mode="out-in">
-                <span v-for="timer in timers" :key="timer.id">
 
-                  <div class="row mb-3 justify-content-center">
-                    <div class="col-3">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">person</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Name" />
-                        
-                      </div>
-                    </div>
-                    <div class="col-1 text-center">
-                      <div>
 
-                        <button id="btn-simular" 
-                        class="btn btn-fab btn-round" 
-                        :class="timer == currentTimer ? 'btn-danger' : 'btn-success'" 
-                        @click="toggleTimer(timer)">
-                          <i class="fa" :class="timer == currentTimer ? 'fa-pause' : 'fa-play'"></i>
-                        </button>
+              <div class="row mb-3">
+                <div class="col-3 justify-content-center">
+                  
+                  <div class="rounded text-center main-timer">
+                    <div id="name" class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">timer</i>
+                        </span>
                       </div>
-                    </div>
-                    <div class="col-2">
-                      <div id="name" class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">timer</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" :value="timer.time | formatTime" />
-                      </div>
+                      <input type="text" class="form-control disabled text-center" :value="mainTimer.time | formatTime" />
                     </div>
                   </div>
 
-                </span>
-              </transition-group>
+                </div>
+                <div class="col-6">
+
+                  <transition-group name="list" tag="div" mode="out-in">
+                    <span v-for="timer in timers" :key="timer.id">
+    
+                      <div class="row mb-3">
+                        <div class="col-6">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="material-icons">person</i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Name" />
+                            
+                          </div>
+                        </div>
+                        <div class="col-2 text-center">
+                          <div>
+    
+                            <button id="btn-simular" 
+                            class="btn btn-fab btn-round" 
+                            :class="timer == currentTimer ? 'btn-info' : timer.time != initialTime ? 'btn-dark' : 'btn-success'" 
+                            @click="toggleTimer(timer)">
+                              <i class="fa" :class="timer == currentTimer ? 'fa-pause' : 'fa-play'"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div id="name" class="input-group mb-3">
+                            <div class="input-group-prepend">
+                          <span class="input-group-text">
+                                <i class="material-icons">timer</i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control disabled" :value="timer.time | formatTime" />
+                          </div>
+                        </div>
+    
+                      </div>
+    
+                    </span>
+                  </transition-group>
+
+                </div>
+                <div class="col-3">
+
+                  <!-- nothing here by now -->
+
+                </div>
+              </div>
 
               <div class="row mb-3 justify-content-center">
                 <div class="col-6">

@@ -3,12 +3,19 @@ var mainApp = new Vue({
   data: {
     initialTime: 60,
     currentTimer: undefined,
+    mainTimerInitialTime: (15 * 60),
+    mainTimer: undefined,
     timers: []
   },
   mounted: function () {
 
     for (let i = 0; i < 3; i++) {
       this.addTimer();
+    }
+
+    this.mainTimer = {
+      time: this.mainTimerInitialTime,
+      active: false
     }
 
     this.timer();
@@ -22,6 +29,8 @@ var mainApp = new Vue({
       })
     },
     toggleTimer: function (timer) {
+
+      this.mainTimer.active = true;
       
       if(this.currentTimer && this.currentTimer === timer) {
         this.currentTimer = undefined;
@@ -34,6 +43,9 @@ var mainApp = new Vue({
       while(true)	{
         if(this.currentTimer) {
           this.currentTimer.time--;
+        }
+        if(this.mainTimer.active) {
+          this.mainTimer.time--;
         }
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
