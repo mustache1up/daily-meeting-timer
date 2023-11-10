@@ -23,6 +23,10 @@ input {
     transform: scale(2);
 }
 
+.unclickable {
+    pointer-events:none;
+}
+
 .blink {
     animation: blinker 1.5s linear infinite;
 }
@@ -34,5 +38,13 @@ input {
 }
 
 .texto-vermelho {
-    color: red;
+    color: red !important;
+}
+
+.texto-cinza {
+    color: gray !important;
+}
+
+.grayed-filter {
+    filter: contrast(30%) brightness(150%);
 }

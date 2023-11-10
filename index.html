@@ -106,7 +106,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <i class="material-icons" :class="mainTimer.time < 0 ? 'texto-vermelho' : ''">timer</i>
                         </span>
                       </div>
-                      <input type="text" class="form-control disabled text-center" :value="mainTimer.time | formatTime" />
+                      <input type="text" class="form-control disabled text-center unclickable" :value="mainTimer.time | formatTime" />
                     </div>
                   </div>
 
@@ -140,13 +140,13 @@ The above copyright notice and this permission notice shall be included in all c
                           </div>
                         </div>
                         <div class="col-4">
-                          <div id="name" class="input-group mb-3">
+                          <div id="name" class="input-group mb-3" :class="timer == currentTimer ? '' : 'grayed-filter'">
                             <div class="input-group-prepend">
                               <span class="input-group-text" :class="timer == currentTimer ? 'blink' : ''">
                                 <i class="material-icons" :class="timer.time < 0 ? 'texto-vermelho' : ''">timer</i>
                               </span>
                             </div>
-                            <input type="text" class="form-control disabled" :value="timer.time | formatTime" />
+                            <input :value="timer.time + 's'" type="text" class="form-control disabled unclickable" :class="timer.time < 0 ? 'texto-vermelho' : ''" />
                           </div>
                         </div>
     
