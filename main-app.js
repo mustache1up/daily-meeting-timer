@@ -4,13 +4,21 @@ var mainApp = new Vue({
     initialTime: 60,
     currentTimer: undefined,
     mainTimerInitialTime: (15 * 60),
-    mainTimer: undefined,
+    mainTimer: {},
     timers: []
   },
   mounted: function () {
 
-    for (let i = 0; i < 3; i++) {
-      this.addTimer();
+    var localTimers = JSON.parse(localStorage.getItem("timers"));
+    if(localTimers && localTimers.length > 0) {
+      this.timers = localTimers;
+      for (let timer of this.timers) {
+        timer.time = this.initialTime;
+      }
+    } else {
+      for (let i = 0; i < 3; i++) {
+        this.addTimer();
+      }
     }
 
     this.mainTimer = {
@@ -20,13 +28,25 @@ var mainApp = new Vue({
 
     this.timer();
   },
+  watch: {
+    timers: {
+      handler: function (val, oldVal) {
+        this.updateLocalStorage();
+      },
+      deep: true
+    },
+  },
   methods: {
     addTimer: function () {
 
       this.timers.push({
-        id: this.timers.length,
+        name: "",
         time: this.initialTime
       })
+
+    },
+    updateLocalStorage: function () {
+      localStorage.setItem("timers", JSON.stringify(this.timers));
     },
     toggleTimer: function (timer) {
 

@@ -114,7 +114,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="col-6">
 
                   <transition-group name="list" tag="div" mode="out-in">
-                    <span v-for="timer in timers" :key="timer.id">
+                    <span v-for="(timer, timerIndex) in timers" :key="timerIndex">
     
                       <div class="row mb-3">
                         <div class="col-6">
@@ -124,7 +124,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <i class="material-icons">person</i>
                               </span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Name" />
+                            <input v-model="timer.name" type="text" class="form-control" placeholder="Name" />
                             
                           </div>
                         </div>
