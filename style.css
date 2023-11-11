@@ -15,16 +15,25 @@ input {
     transform: translateY(30px);
 }
 
+.timer {
+    background-repeat: no-repeat !important;
+}
+
+.big {
+    font-size: 48px !important;
+    height: auto !important;
+}
+
 .main-timer { 
     position: sticky; 
-    top: 50vh; 
-    width: 120px;
+    top: 40vh; 
+    /* width: 120px; */
     /* transform-origin: right; */
-    transform: scale(2);
+    /* transform: scale(2); */
 }
 
 .unclickable {
-    pointer-events:none;
+    pointer-events: none;
 }
 
 .blink {
