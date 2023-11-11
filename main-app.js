@@ -10,15 +10,15 @@ var mainApp = new Vue({
   mounted: function () {
 
     var localTimers = JSON.parse(localStorage.getItem("timers"));
-    if(localTimers && localTimers.length > 0) {
+    if (localTimers) {
+      localTimers = localTimers.filter(x => x.name?.trim())
+      localTimers.forEach(x => x.time = this.initialTime)
+    }
+      
+    if (localTimers?.length > 0) {
       this.timers = localTimers;
-      for (let timer of this.timers) {
-        timer.time = this.initialTime;
-      }
     } else {
-      for (let i = 0; i < 3; i++) {
-        this.addTimer();
-      }
+      this.timers = Array.from({length: 3}, () => this.emptyTimer())
     }
 
     this.mainTimer = {
@@ -26,7 +26,7 @@ var mainApp = new Vue({
       active: false
     }
 
-    this.timer();
+    this.startTimer();
   },
   watch: {
     timers: {
@@ -37,15 +37,18 @@ var mainApp = new Vue({
     },
   },
   methods: {
-    addTimer: function () {
-
-      this.timers.push({
+    emptyTimer: function () {
+      return {
         name: "",
         time: this.initialTime
-      })
+      };
+    },
+    addTimer: function () {
 
+      this.timers.push(this.emptyTimer());
     },
     updateLocalStorage: function () {
+      
       localStorage.setItem("timers", JSON.stringify(this.timers));
     },
     toggleTimer: function (timer) {
@@ -58,7 +61,7 @@ var mainApp = new Vue({
         this.currentTimer = timer;
       }
     },
-    timer: async function () {
+    startTimer: async function () {
       
       while(true)	{
         if(this.currentTimer) {
